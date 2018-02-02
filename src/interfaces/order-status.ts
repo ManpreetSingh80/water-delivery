@@ -1,0 +1,6 @@
+export enum OrderStatus {
+  WAITING_FOR_APPROVAL,
+  APPROVED,
+  IN_TRANSIT,
+  COMPLETED
+}

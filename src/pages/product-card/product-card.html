@@ -1,0 +1,28 @@
+<ion-card>
+  <div>
+    <img [src]="product.image ? product.image : defaultImg"/>
+    <ion-item class="content">
+      <h2>{{ product.name }}</h2>
+      <p>{{ product.description }}</p>
+    </ion-item>
+  </div>
+  <hr>
+  <ion-item class="footer" >
+    <span color="secondary" item-left>₹ {{ product.price }}</span>
+    <button *ngIf="quantity < 1" ion-button icon-left item-right outline medium (click)="add(1)" class="add">
+      <ion-icon name="add"></ion-icon>
+      ADD
+    </button>
+    <div *ngIf="quantity > 0" class="button-group" item-right>
+      <button ion-button icon-only medium (click)="add(1)">
+        <ion-icon name="add"></ion-icon>
+      </button>
+      <button ion-button outline medium clear style="font-size:2rem;">
+        &nbsp; {{ quantity }} &nbsp;
+      </button>
+      <button ion-button icon-only medium (click)="add(-1)">
+        <ion-icon name="remove"></ion-icon>
+      </button>
+    </div>
+  </ion-item>
+</ion-card>

@@ -1,0 +1,25 @@
+<ion-card>
+  <div (click)="gotoShop()">
+    <img [src]="shop.image ? shop.image : defaultImg"/>
+    <ion-item>
+      <ion-icon style="font-size: 46px;" name="contact" item-left large color="primary"></ion-icon>
+      <h2 color="primary">{{ shop.name }} </h2>
+      <p>{{ shop.address }} </p>
+      <div class="space-between">
+        <p>{{ shop.city }}</p>
+        <p>{{ shop.zipCode }}</p>
+      </div>
+    </ion-item>
+  </div>
+  <hr>
+  <ion-item>
+    <button ion-button icon-left clear item-left>
+      <ion-icon name="time"></ion-icon>
+      {{ shop.timings.opening }} - {{ shop.timings.closing }}
+    </button>
+    <button ion-button icon-left clear item-right (click)="openShopLocation()">
+      <ion-icon name="navigate"></ion-icon>
+      Location
+    </button>
+  </ion-item>
+</ion-card>

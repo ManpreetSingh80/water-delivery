@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Active Orders</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content #scrollArea>
+    <div padding>
+      <ion-grid>
+        <ion-row justify-content-center>
+          <ion-col *ngFor="let order of orders" col-sm-12 col-md-6 col-lg-5 col-xl-4>
+              <order-card [order]="order"></order-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+    </div>
+</ion-content>

@@ -1,0 +1,75 @@
+<ion-header class="heading">
+  <!-- <ion-grid>
+    <ion-row>
+      <ion-col col-12 col-sm-6 col-md-3 col-lg-2 col-xl-1>
+          <ion-navbar color="primary">
+              <ion-title color="white">Back</ion-title>
+            </ion-navbar>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid> -->
+  <!-- <ion-toolbar no-padding> -->
+      <button block no-margin ion-button icon-left color="primary" (click)="onBack()"><ion-icon name="arrow-back"></ion-icon>&nbsp; Back</button>
+  <!-- </ion-toolbar> -->
+
+</ion-header>
+
+<ion-content padding #scrollArea>
+  <ion-grid no-padding>
+    <ion-row align-items-center justify-content-center>
+      <ion-col col-sm-12 col-md-6 col-lg-5 col-xl-4>
+        <ion-card no-margin class="cart-card">
+          <ion-card-header>
+            <ion-icon name="cart"></ion-icon> Cart
+          </ion-card-header>
+
+        <ion-list>
+          <ion-item-sliding *ngFor="let item of list;let i=index;">
+            <ion-item>
+              <ion-thumbnail item-left (click)="showItemInfo(item,i)">
+                <img [src]="item.product.image">
+              </ion-thumbnail>
+              <h2 class="item-name">{{item.product.name}} </h2>
+              <!-- <p *ngIf="item.maxRetPrice - item.storePrice"  color="primary">You Save {{item.maxRetPrice - item.storePrice}} </p> -->
+              <h4 class="price"> {{ item.product.price }}
+                  <!-- <s class="price-old">{{item.maxRetPrice}} </s> -->
+              </h4>
+              <div item-right class="quantity">
+                <button ion-button icon-only clear medium (click)="decQty(i)"><ion-icon name="remove-circle"></ion-icon></button>
+                <h4 class="item-quantity">{{item.quantity}} </h4>
+                <button ion-button icon-only clear medium (click)="incQty(i)"><ion-icon name="add-circle"></ion-icon></button>
+              </div>
+              <br>
+              <div class="total-price">
+                <h4>Total &nbsp; ₹{{ item.price }}</h4>
+              </div>
+              <!--<button ion-button clear item-right>View</button>-->
+            </ion-item>
+            <ion-item-options side="right">
+              <button ion-button color="primary" (click)="removeItem(i)" >
+                <ion-icon name="trash"></ion-icon>
+                Remove
+              </button>
+            </ion-item-options>
+          </ion-item-sliding>
+
+        </ion-list>
+        </ion-card>
+      </ion-col>
+      <ion-col col-3 offset-3 class="checkout hide-xs hide-sm">
+        <button ion-button icon-left block (click)="checkout()">
+          <ion-icon name="md-basket"></ion-icon>
+            CHECKOUT
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
+
+<ion-footer [hidden]="!totalQuantity" class="hide-md hide-xl hide-lg footer">
+  <ion-toolbar>
+      <button ion-item text-center color="primary" (click)="checkout()"><ion-icon name="cart"></ion-icon>&nbsp;&nbsp; Checkout</button>
+  </ion-toolbar>
+</ion-footer>

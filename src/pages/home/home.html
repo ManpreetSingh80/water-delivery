@@ -1,0 +1,26 @@
+<!-- <ion-header>
+  <ion-navbar color="light">
+    <button style="display: none" ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title color="primary" style="text-align:center">Waterboy</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="presentPopover($event)">
+        <ion-icon name="cart"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header> -->
+
+<ion-content #scrollArea>
+  <div padding class="about-info">
+    <ion-grid>
+      <ion-row>
+        <ion-col *ngFor="let shop of shops" col-sm-12 col-md-6 col-lg-4 col-xl-3>
+          <shop-card [shop]="shop" (click)="openShop(shop.id)"></shop-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </div>
+</ion-content>

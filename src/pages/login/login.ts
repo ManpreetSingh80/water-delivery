@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { PopoverController } from 'ionic-angular';
 
-import { NavController } from 'ionic-angular';
+import { NavController, ViewController } from 'ionic-angular';
 
 import { UserData } from '../../providers/user-data';
 
@@ -19,7 +20,8 @@ export class LoginPage {
   login: UserOptions = { username: '', password: '' };
   submitted = false;
 
-  constructor(public navCtrl: NavController, public userData: UserData) { }
+  constructor(public navCtrl: NavController, public userData: UserData, public popoverCtrl: PopoverController,
+  public viewCtrl: ViewController) { }
 
   onLogin(form: NgForm) {
     this.submitted = true;
@@ -30,7 +32,13 @@ export class LoginPage {
     }
   }
 
+  dismiss() {
+    this.viewCtrl.dismiss();
+  }
+
   onSignup() {
-    this.navCtrl.push(SignupPage);
+    this.dismiss();
+    let popover = this.popoverCtrl.create(SignupPage);
+    popover.present();
   }
 }

@@ -25,6 +25,16 @@ import { SpeakerListPage } from '../pages/speaker-list/speaker-list';
 import { TabsPage } from '../pages/tabs-page/tabs-page';
 import { TutorialPage } from '../pages/tutorial/tutorial';
 import { SupportPage } from '../pages/support/support';
+import { HomePage } from '../pages/home/home';
+import { ShopCardPage } from '../pages/shop-card/shop-card';
+import { ProductPage } from '../pages/products/products';
+import { ProductCardPage } from '../pages/product-card/product-card';
+import { CartPage } from '../pages/cart/cart';
+import { CheckoutPage } from '../pages/checkout/checkout';
+import { AddAddressPage } from '../pages/add-address/add-address';
+import { OrdersPage } from '../pages/orders/orders';
+import { ActiveOrdersPage } from '../pages/active-orders/active-orders';
+import { OrderCardPage } from '../pages/order-card/order-card';
 
 import { ConferenceData } from '../providers/conference-data';
 import { UserData } from '../providers/user-data';
@@ -46,7 +56,17 @@ import { UserData } from '../providers/user-data';
     SpeakerListPage,
     TabsPage,
     TutorialPage,
-    SupportPage
+    SupportPage,
+    HomePage,
+    ShopCardPage,
+    ProductPage,
+    ProductCardPage,
+    CartPage,
+    CheckoutPage,
+    AddAddressPage,
+    OrdersPage,
+    ActiveOrdersPage,
+    OrderCardPage
   ],
   imports: [
     BrowserModule,
@@ -65,7 +85,12 @@ import { UserData } from '../providers/user-data';
         { component: SupportPage, name: 'SupportPage', segment: 'support' },
         { component: LoginPage, name: 'LoginPage', segment: 'login' },
         { component: AccountPage, name: 'AccountPage', segment: 'account' },
-        { component: SignupPage, name: 'SignupPage', segment: 'signup' }
+        { component: SignupPage, name: 'SignupPage', segment: 'signup' },
+        { component: ProductPage, name: 'Products', segment: 'product' },
+        { component: CartPage, name: 'Cart', segment: 'cart' },
+        { component: CheckoutPage, name: 'Checkout', segment: 'checkout' },
+        { component: OrdersPage, name: 'OrdersPage', segment: 'orders' },
+        { component: ActiveOrdersPage, name: 'ActiveOrders', segment: 'active-orders'}
       ]
     }),
     IonicStorageModule.forRoot()
@@ -86,7 +111,17 @@ import { UserData } from '../providers/user-data';
     SpeakerListPage,
     TabsPage,
     TutorialPage,
-    SupportPage
+    SupportPage,
+    HomePage,
+    ShopCardPage,
+    ProductPage,
+    ProductCardPage,
+    CartPage,
+    CheckoutPage,
+    AddAddressPage,
+    OrdersPage,
+    ActiveOrdersPage,
+    OrderCardPage
   ],
   providers: [
     { provide: ErrorHandler, useClass: IonicErrorHandler },

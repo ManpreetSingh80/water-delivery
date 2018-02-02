@@ -1,0 +1,30 @@
+<ion-content #scrollArea>
+  <div padding class="about-info">
+    <ion-grid>
+      <ion-row>
+        <ion-col *ngFor="let product of products" col-sm-12 col-md-6 col-lg-4 col-xl-3>
+          <!-- <shop-card [shop]="shop"></shop-card> -->
+          <product-card [product]="product"></product-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <ion-grid class="hide-xs hide-sm">
+    <ion-row>
+      <ion-col col-3 offset-8 class="checkout">
+          <button ion-button icon-left block (click)="checkout()">
+            <ion-icon name="md-basket"></ion-icon>
+              CHECKOUT
+          </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+
+
+<ion-footer [hidden]="!totalQuantity" class="hide-md hide-xl hide-lg footer">
+  <ion-toolbar>
+      <button ion-item text-center color="primary" (click)="checkout()"><ion-icon name="cart"></ion-icon>&nbsp;&nbsp; Checkout</button>
+  </ion-toolbar>
+</ion-footer>

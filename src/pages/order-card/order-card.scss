@@ -1,0 +1,17 @@
+order-card {
+  ion-card-header {
+    display: flex;
+    justify-content: space-between;
+    h2 {
+      color: blue;
+    }
+  }
+  .status {
+    display: flex;
+    justify-content: space-between;
+  }
+  .order-time {
+    display: flex;
+    justify-content: space-between;
+  }
+}

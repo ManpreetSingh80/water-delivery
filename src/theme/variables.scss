@@ -95,3 +95,16 @@ $toolbar-md-active-color:                 #fff;
 
 @import "roboto";
 @import "noto-sans";
+
+// overides
+
+$popover-ios-min-width: 310px;
+$popover-ios-width: 60vw;
+
+
+$popover-md-min-width: 310px;
+$popover-md-width: 60vw;
+
+.popover-content {
+  max-width: 450px;
+}

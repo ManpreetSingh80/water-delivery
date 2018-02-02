@@ -1,22 +1,29 @@
-<ion-header>
-	<ion-navbar>
-		<button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-		<ion-title>Signup</ion-title>
-	</ion-navbar>
-</ion-header>
+<ion-toolbar color="secondary">
+    <ion-title style="padding-left: 10px">Sign Up</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+</ion-toolbar>
 
-<ion-content class="login-page">
+<ion-grid>
 
-	<div class="logo">
-		<img src="assets/img/appicon.svg" alt="Ionic Logo">
-	</div>
+  <ion-item>
+    <ion-row>
+      <ion-col class="justify-center">
+        <button ion-button color="facebook" block>Facebook</button>
+      </ion-col>
+      <ion-col class="justify-center">
+        <button ion-button color="google" block>Google</button>
+      </ion-col>
+    </ion-row>
+  </ion-item>
 
 	<form #signupForm="ngForm" novalidate>
-		<ion-list no-lines>
+		<ion-list>
 			<ion-item>
-				<ion-label stacked color="primary">Username</ion-label>
+				<ion-label floating color="primary">Username</ion-label>
 				<ion-input [(ngModel)]="signup.username" name="username" type="text" #username="ngModel" required>
 				</ion-input>
 			</ion-item>
@@ -25,7 +32,7 @@
 			</p>
 
 			<ion-item>
-				<ion-label stacked color="primary">Password</ion-label>
+				<ion-label floating color="primary">Password</ion-label>
 				<ion-input [(ngModel)]="signup.password" name="password" type="password" #password="ngModel" required>
 				</ion-input>
 			</ion-item>
@@ -34,9 +41,15 @@
 			</p>
 		</ion-list>
 
-		<div padding>
-			<button ion-button (click)="onSignup(signupForm)" type="submit" block>Create</button>
-		</div>
+		<ion-item>
+      <ion-row justify-content-end class="login-buttons">
+        <ion-col col-6>
+          <button ion-button (click)="onSignup(signupForm)" type="submit" block>Sign Up</button>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+    <ion-row align-items-center justify-content-center>
+        Already have an account?<button ion-button color="primary" clear (click)="onLogin()">Sign In</button>
+    </ion-row>
 	</form>
-
-</ion-content>
+</ion-grid>

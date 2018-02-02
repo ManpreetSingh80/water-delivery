@@ -1,7 +1,8 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ElementRef, Renderer } from '@angular/core';
 
 import { Events, MenuController, Nav, Platform } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { PopoverController } from 'ionic-angular';
 
 import { Storage } from '@ionic/storage';
 
@@ -15,6 +16,8 @@ import { TutorialPage } from '../pages/tutorial/tutorial';
 import { SchedulePage } from '../pages/schedule/schedule';
 import { SpeakerListPage } from '../pages/speaker-list/speaker-list';
 import { SupportPage } from '../pages/support/support';
+import { HomePage } from '../pages/home/home';
+import { OrdersPage } from '../pages/orders/orders';
 
 import { ConferenceData } from '../providers/conference-data';
 import { UserData } from '../providers/user-data';
@@ -37,6 +40,7 @@ export class ConferenceApp {
   // the root nav is a child of the root app component
   // @ViewChild(Nav) gets a reference to the app's root nav
   @ViewChild(Nav) nav: Nav;
+  @ViewChild('c') content: ElementRef;
 
   // List of pages that can be navigated to from the left menu
   // the left menu only works after login
@@ -49,7 +53,7 @@ export class ConferenceApp {
   ];
   loggedInPages: PageInterface[] = [
     { title: 'Account', name: 'AccountPage', component: AccountPage, icon: 'person' },
-    { title: 'Support', name: 'SupportPage', component: SupportPage, icon: 'help' },
+    { title: 'Orders', name: 'OrdersPage', component: OrdersPage, icon: 'help' },
     { title: 'Logout', name: 'TabsPage', component: TabsPage, icon: 'log-out', logsOut: true }
   ];
   loggedOutPages: PageInterface[] = [
@@ -58,6 +62,8 @@ export class ConferenceApp {
     { title: 'Signup', name: 'SignupPage', component: SignupPage, icon: 'person-add' }
   ];
   rootPage: any;
+  activeMenu = [];
+  loggedIn = false;
 
   constructor(
     public events: Events,
@@ -66,19 +72,23 @@ export class ConferenceApp {
     public platform: Platform,
     public confData: ConferenceData,
     public storage: Storage,
-    public splashScreen: SplashScreen
+    public splashScreen: SplashScreen,
+    public renderer: Renderer,
+    public popoverCtrl: PopoverController
   ) {
 
     // Check if the user has already seen the tutorial
-    this.storage.get('hasSeenTutorial')
-      .then((hasSeenTutorial) => {
-        if (hasSeenTutorial) {
-          this.rootPage = TabsPage;
-        } else {
-          this.rootPage = TutorialPage;
-        }
-        this.platformReady()
-      });
+    // this.storage.get('hasSeenTutorial')
+    //   .then((hasSeenTutorial) => {
+    //     if (hasSeenTutorial) {
+    //       this.rootPage = TabsPage;
+    //     } else {
+    //       this.rootPage = TutorialPage;
+    //     }
+    //     this.platformReady()
+    //   });
+    this.rootPage = HomePage;
+    this.platformReady();
 
     // load the conference data
     confData.load();
@@ -139,6 +149,8 @@ export class ConferenceApp {
   }
 
   enableMenu(loggedIn: boolean) {
+    this.loggedIn = loggedIn;
+    this.activeMenu = loggedIn ? this.loggedInPages : this.loggedOutPages;
     this.menu.enable(loggedIn, 'loggedInMenu');
     this.menu.enable(!loggedIn, 'loggedOutMenu');
   }
@@ -165,5 +177,41 @@ export class ConferenceApp {
       return 'primary';
     }
     return;
+  }
+
+  signIn() {
+    let popover = this.popoverCtrl.create(LoginPage);
+    popover.present();
+  }
+
+  signUp() {
+    let popover = this.popoverCtrl.create(SignupPage);
+    popover.present();
+  }
+
+  headerShrinked = false;
+
+  resizeHeader(ev) {
+    if (ev.scrollTop > (ev.contentWidth > 768 ? 160 : 115)) {
+      // console.log('shrink header');
+      this.headerShrinked = true;
+      this.renderer.setElementClass(this.content.nativeElement, 'hide-on-scroll', true);
+      this.renderer.setElementClass(this.nav._elementRef.nativeElement, 'hide-on-scroll', true);
+    } else if (this.headerShrinked) {
+      this.renderer.setElementClass(this.content.nativeElement, 'hide-on-scroll', false);
+      this.renderer.setElementClass(this.nav._elementRef.nativeElement, 'hide-on-scroll', false);
+    }
+  }
+
+  ngAfterViewInit() {
+    console.log(this.menu.getMenus());
+    this.nav.viewDidLoad.subscribe(v => {
+      const scrollArea = v.instance.scrollArea;
+      if (scrollArea) {
+        scrollArea.ionScroll.subscribe((ev) => {
+          this.resizeHeader(ev);
+        });
+      }
+    });
   }
 }

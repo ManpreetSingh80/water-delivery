@@ -1,0 +1,18 @@
+.space-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.checkout {
+  display: flex;
+  justify-content: center;
+  button {
+    max-width: 200px;
+  }
+}
+
+.footer {
+  .item-block .item-inner {
+    border-bottom: none;
+  }
+}

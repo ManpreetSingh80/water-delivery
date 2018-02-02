@@ -1,0 +1,61 @@
+
+  <ion-toolbar color="secondary">
+      <ion-title style="padding-left: 10px">Add Address</ion-title>
+      <ion-buttons end>
+        <button ion-button icon-only (click)="dismiss()">
+          <ion-icon name="close"></ion-icon>
+        </button>
+      </ion-buttons>
+  </ion-toolbar>
+
+<ion-grid>
+    <form #addressForm="ngForm" novalidate>
+      <ion-list>
+        <ion-item>
+          <ion-label floating color="primary">Address Line 1</ion-label>
+          <ion-input [(ngModel)]="address.addressLine1" name="addressLine1" type="text" #addressLine1="ngModel" spellcheck="false" autocapitalize="off"
+            required>
+          </ion-input>
+        </ion-item>
+        <p ion-text [hidden]="addressLine1.valid || submitted == false" color="danger" padding-left>
+          Address Line 1 is required
+        </p>
+
+        <ion-item>
+          <ion-label floating color="primary">Address Line 2</ion-label>
+          <ion-input [(ngModel)]="address.addressLine2" name="addressLine2" type="text" #addressLine2="ngModel" required>
+          </ion-input>
+        </ion-item>
+        <p ion-text [hidden]="addressLine2.valid || submitted == false" color="danger" padding-left>
+          Address Line 2 is required
+        </p>
+
+        <ion-item>
+          <ion-label floating color="primary">City</ion-label>
+          <ion-input [(ngModel)]="address.city" name="city" type="text" #city="ngModel" required>
+          </ion-input>
+        </ion-item>
+        <p ion-text [hidden]="city.valid || submitted == false" color="danger" padding-left>
+           City is required
+        </p>
+
+          <ion-item>
+            <ion-label floating color="primary">Contact</ion-label>
+            <ion-input [(ngModel)]="address.contact" name="address.contact" type="text" #contact="ngModel" required>
+            </ion-input>
+          </ion-item>
+          <p ion-text [hidden]="contact.valid || submitted == false" color="danger" padding-left>
+            Contact is required
+          </p>
+      </ion-list>
+
+      <ion-item>
+          <ion-label color="primary">Set Default Address</ion-label>
+          <ion-checkbox color="primary" [(ngModel)]="address.default" #default="ngModel" name="default"></ion-checkbox>
+      </ion-item>
+
+      <ion-item>
+          <button ion-button (click)="onAdd(addressForm)" type="submit" block>Add Address</button>
+      </ion-item>
+    </form>
+</ion-grid>
