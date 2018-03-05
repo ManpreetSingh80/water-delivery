@@ -1,12 +1,13 @@
 {
-  "name": "ionic-conference-app",
+  "name": "water-delivery",
   "version": "0.0.0",
-  "description": "Ionic Conference App",
+  "description": "An e-commerce PWA, built with ionic",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ionic-team/ionic-conference-app.git"
+    "url": "https://github.com/manpreetsingh80/water-delivery"
   },
+  "author": "Manpreet Singh <mpsworld@gmail.com>",
   "scripts": {
     "build": "ionic-app-scripts build",
     "clean": "ionic-app-scripts clean",
